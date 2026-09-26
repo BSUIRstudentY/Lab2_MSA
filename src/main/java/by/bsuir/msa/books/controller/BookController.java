@@ -24,7 +24,7 @@ public class BookController {
     }
 
     @GetMapping
-    public List<BookResponseDto> findAll(@RequestParam(required = false) String author) {
+    public List<BookResponseDto> findAll(@RequestParam(value = "author", required = false) String author) {
         if (author != null && !author.isBlank()) {
             return bookService.findByAuthor(author);
         }
