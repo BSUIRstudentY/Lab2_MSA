@@ -38,7 +38,7 @@ public class Book {
     @NotNull
     private Integer yearPublished;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 4000)
     private String description;
 
     @CreatedDate
