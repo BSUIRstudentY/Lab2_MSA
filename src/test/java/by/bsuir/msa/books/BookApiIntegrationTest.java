@@ -25,7 +25,7 @@ class BookApiIntegrationTest {
         BookCreateDto create = new BookCreateDto();
         create.setTitle("Clean Code");
         create.setAuthor("Robert Martin");
-        create.setIsbn("978-0132350884");
+        create.setIsbn("978-0000000001");
         create.setYearPublished(2008);
         create.setDescription("A Handbook of Agile Software Craftsmanship");
 
@@ -41,7 +41,7 @@ class BookApiIntegrationTest {
 
         mockMvc.perform(get("/api/books/" + id))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.isbn", is("978-0132350884")));
+                .andExpect(jsonPath("$.isbn", is("978-0000000001")));
 
         mockMvc.perform(get("/api/books").param("author", "robert martin"))
                 .andExpect(status().isOk())
