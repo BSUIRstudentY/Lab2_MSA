@@ -1,19 +1,13 @@
 package by.bsuir.msa.books.dto;
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
-import java.time.Instant;
-
-@Value
-@Builder
+@Data
 public class BookResponseDto {
-    Long id;
-    String title;
-    String author;
-    String isbn;
-    Integer yearPublished;
-    String description;
-    Instant createdAt;
-    Instant updatedAt;
+    private Long id;
+    private String title;
+    private String author;
+    private String isbn;
+    private Integer yearPublished;
+    private String description;
 }

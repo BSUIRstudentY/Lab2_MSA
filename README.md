@@ -1,23 +1,10 @@
-# МСА — Лабораторная работа №2: Unit / Integration tests (JUnit + Mockito)
+# МСА ЛБ2 — тесты (JUnit + Mockito)
 
-Студент: Ковалевский Я.А., группа 372301  
-Преподаватель: Ахриева М.Р.  
-Предметная область: каталог книг (Book CRUD)
+Ковалевский Я.А., 372301
 
-## Стек
-- Java 21, Spring Boot 3.3
-- Spring Data JPA, Validation, Lombok, MapStruct
-- Unit-тесты сервиса (Mockito)\n- `@WebMvcTest` контроллера\n- Integration CRUD
+Добавлены unit-тест сервиса (Mockito) и простой интеграционный тест API.
 
-## Запуск
-```bash
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"
-mvn spring-boot:run
-```
-
-## Тесты
 ```bash
 mvn test
+mvn spring-boot:run
 ```
-
-Локальный git готов: позже `git remote add origin <url>` и `git push -u origin main`.
