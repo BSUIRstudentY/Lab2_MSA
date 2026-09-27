@@ -2,7 +2,6 @@ package by.bsuir.msa.books.dto;
 
 import lombok.Data;
 
-// dto для создания книги
 @Data
 public class BookCreateDto {
     private String title;

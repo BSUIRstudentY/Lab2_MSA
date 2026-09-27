@@ -17,6 +17,9 @@ public class BookService {
     private final BookMapper bookMapper;
 
     public BookResponseDto create(BookCreateDto dto) {
+        if (bookRepository.findByIsbn(dto.getIsbn()).isPresent()) {
+            throw new RuntimeException("isbn already exists");
+        }
         Book book = bookMapper.toEntity(dto);
         Book saved = bookRepository.save(book);
         return bookMapper.toDto(saved);
@@ -34,7 +37,6 @@ public class BookService {
         return bookMapper.toDto(book);
     }
 
-    // TODO: потом добавить проверку isbn
     public BookResponseDto update(Long id, BookCreateDto dto) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("book not found"));

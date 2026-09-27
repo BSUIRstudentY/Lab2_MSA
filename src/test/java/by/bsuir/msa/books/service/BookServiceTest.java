@@ -11,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -43,6 +45,7 @@ class BookServiceTest {
         response.setId(1L);
         response.setTitle("Test");
 
+        when(bookRepository.findByIsbn("123")).thenReturn(Optional.empty());
         when(bookMapper.toEntity(dto)).thenReturn(entity);
         when(bookRepository.save(any())).thenReturn(saved);
         when(bookMapper.toDto(saved)).thenReturn(response);
@@ -51,5 +54,26 @@ class BookServiceTest {
         assertEquals(1L, result.getId());
     }
 
-    // TODO: тест на update
+    @Test
+    void updateBook() {
+        BookCreateDto dto = new BookCreateDto();
+        dto.setTitle("New title");
+        dto.setAuthor("A");
+        dto.setIsbn("123");
+
+        Book book = new Book();
+        book.setId(1L);
+        book.setTitle("Old");
+
+        BookResponseDto response = new BookResponseDto();
+        response.setId(1L);
+        response.setTitle("New title");
+
+        when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
+        when(bookRepository.save(book)).thenReturn(book);
+        when(bookMapper.toDto(book)).thenReturn(response);
+
+        BookResponseDto result = bookService.update(1L, dto);
+        assertEquals("New title", result.getTitle());
+    }
 }
